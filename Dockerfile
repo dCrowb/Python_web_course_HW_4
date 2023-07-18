@@ -9,7 +9,7 @@ USER httpuser
 WORKDIR $HOME_DIR
 COPY --chown=httpuser:httpuser . /$HOME_DIR
 RUN pip install --user -r requirements.txt && pipenv install
-RUN --mount=target=/opt/http/storage,type=bind,source=/opt/storage/
+VOLUME /opt/http
 
-EXPOSE 5000
+EXPOSE 3000
 ENTRYPOINT [ "python", "./main.py"]
